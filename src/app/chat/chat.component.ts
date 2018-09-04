@@ -10,6 +10,7 @@ import * as firebase from 'firebase';
 
 import { IChat } from '../../model/chat';
 import { DataService } from '../data.service';
+import { NgAisModule } from 'angular-instantsearch';
 
 // class Chat implements IChat {}
 
@@ -44,6 +45,13 @@ export class ChatComponent implements OnInit, AfterViewChecked
     this.chat$.subscribe(() => {this.scrollToBottom()})
 
     this.resetModel();
+    
+    this.algoliaConfig = {
+	    apiKey: '9631efee5b7518aecd0fd96df17a1427',
+	    appId: 'JYBBND0XOY',
+	    indexName: 'instant_search',
+	    routing: true
+	  };
   }
 
   scrollToBottom(): void {
