@@ -33,8 +33,14 @@
 	</div>
 	
 	<h1>My first search app</h1>
-	<ais-instantsearch [config]="alogoliaConfig">
-	  <ais-hits></ais-hits>
+	<ais-instantsearch [config]="algoliaConfig">
+		<ais-hits>
+			<ng-template let-hits="hits">
+		    	<div *ngFor="let hit of hits">
+		        	Hit {{hit.objectID}}: {{hit.name}}
+		      	</div>
+	   		</ng-template>
+		</ais-hits>
 	</ais-instantsearch>
 
 	

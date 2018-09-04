@@ -45,13 +45,6 @@ export class ChatComponent implements OnInit, AfterViewChecked
     this.chat$.subscribe(() => {this.scrollToBottom()})
 
     this.resetModel();
-    
-    this.algoliaConfig = {
-	    apiKey: '9631efee5b7518aecd0fd96df17a1427',
-	    appId: 'JYBBND0XOY',
-	    indexName: 'instant_search',
-	    routing: true
-	  };
   }
 
   scrollToBottom(): void {
@@ -64,6 +57,12 @@ export class ChatComponent implements OnInit, AfterViewChecked
     }
 
   ngOnInit() {
+    this.algoliaConfig = {
+	    apiKey: '9631efee5b7518aecd0fd96df17a1427',
+	    appId: 'JYBBND0XOY',
+	    indexName: 'users',
+	    routing: true
+	  };
     this.user$.first().subscribe( (u) => this.userObject = u );
     this.scrollToBottom();
   }
