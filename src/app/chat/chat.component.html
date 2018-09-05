@@ -33,7 +33,7 @@
 		</div>
 	</div>
 	
-	<div class="handleResults" [ngStyle]="{'left': calcLeft(), 'top': calcTop()}">
+	<div *ngIf="hits.length" class="handleResults" [ngStyle]="{'left': calcLeft(), 'top': calcTop()}">
 		<div *ngFor="let hit of hits" class="user-hit" >
 			<img [src]="hit.picture.thumbnail" class="chat-thumbnail-sm"/>
 			<span class="handle">{{ hit.handle }}</span>

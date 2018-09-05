@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs/Subscription';
 import * as firebase from 'firebase';
 
 import { IChat } from '../../model/chat';
+import { IUser } from '../../model/user';
 import { DataService } from '../data.service';
 
 // class Chat implements IChat {}
@@ -26,6 +27,7 @@ export class ChatComponent implements OnInit, AfterViewChecked
   chatCollection: AngularFirestoreCollection<IChat>;
   chat$: Observable<IChat[]>;
   model: IChat;
+  hits: IUser[] = [];
 
   user$: Observable<Object>;
   userObject: Object;
@@ -55,6 +57,8 @@ export class ChatComponent implements OnInit, AfterViewChecked
     this.resetModel();
     
     this.el = el.nativeElement;
+    
+    this.hits = [];
   }
 
   scrollToBottom(): void {
@@ -73,7 +77,7 @@ export class ChatComponent implements OnInit, AfterViewChecked
 
   ngAfterViewChecked() {        
     this.scrollToBottom();        
-  } 
+  }
 
   onSubmit() {
 
@@ -92,17 +96,15 @@ export class ChatComponent implements OnInit, AfterViewChecked
   }
   
   calcLeft() {
-    if (this.el && this.el.parentNode) {
-      let v = this.el.parentNode.getBoundingClientRect();
-      return (v.x + 68).toString() + "px" 
-    }
+    let el = <Element>this.el.parentNode;
+    let v = el.getBoundingClientRect();
+    return (v.left + 68).toString() + "px";
   }
   
   calcTop() {
-    if (this.el && this.el.parentNode) {
-       let v = this.el.parentNode.getBoundingClientRect();
-       return (v.y + 160).toString() + "px"
-    }
+    let el = <Element>this.el.parentNode;
+    let v = el.getBoundingClientRect();
+    return (v.top + 140 + (this.el.clientHeight)).toString() + "px";
   }
 
   handleSearch($event) {
