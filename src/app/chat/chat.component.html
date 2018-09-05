@@ -24,7 +24,8 @@
 					<div class="input-group-prepend">
 						<img [src]="userObject?.picture.thumbnail" class="author-thumbnail"/>
 					</div>
-				<input id="message" name="message" type="text" [(ngModel)]="model.text" class="form-control"/>
+				<!--<ng2-completer inputClass="form-control" name="message" [(ngModel)]="model.text" [datasource]="dataService" [minSearchLength]="0"></ng2-completer>-->
+				<input id="message" name="message" type="text" [(ngModel)]="model.text" (ngModelChange)="handleSearch($event)" class="form-control"/>
 				<div class="input-group-append">
 					<button type="submit" class="btn btn-primary btn-success">Send</button>
 				</div>
@@ -32,16 +33,14 @@
 		</div>
 	</div>
 	
-	<h1>My first search app</h1>
-	<ais-instantsearch [config]="algoliaConfig">
-		<ais-hits>
-			<ng-template let-hits="hits">
-		    	<div *ngFor="let hit of hits">
-		        	Hit {{hit.objectID}}: {{hit.name}}
-		      	</div>
-	   		</ng-template>
-		</ais-hits>
-	</ais-instantsearch>
-
-	
+	<div class="handleResults" [ngStyle]="{'left': calcLeft(), 'top': calcTop()}">
+		<div *ngFor="let hit of hits" class="user-hit" >
+			<img [src]="hit.picture.thumbnail" class="chat-thumbnail-sm"/>
+			<span class="handle">{{ hit.handle }}</span>
+			<span class="name">
+				{{ hit.name.first }}	
+				{{ hit.name.last }}
+			</span>
+		</div>
+	</div>
 </form>

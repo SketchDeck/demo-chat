@@ -8,6 +8,12 @@
 	width: 4em;
 }
 
+.chat-thumbnail-sm {
+	border-radius: 50%;
+	width: 2em;
+	margin: 5px;
+}
+
 .chat-name {
 	font-size: 50%;
 	color: #aaa;
@@ -49,4 +55,26 @@
 	padding: 0 1.5em;
 	max-height: 60vh;
 	overflow-y: scroll;
+}
+
+.handleResults {
+    border: 1px solid #ddd;
+    border-radius: 5%;
+    background: white;
+    position: absolute;
+    padding: 5px;
+    overflow: scroll;
+    max-height: 450px;
+}
+
+.handleResults .handle {
+	font-weight: bold;
+}
+
+.handleResults .name {
+	
+}
+
+.user-hit {
+	padding: 5px;
 }
