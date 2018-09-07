@@ -27,12 +27,13 @@ export class MessageBoxComponent implements OnInit {
 
   constructor(
     db: AngularFirestore,
+    data: DataService,
     el: ElementRef
   ) {
      this.el = el.nativeElement;
      this.chatCollection = db.collection<IChat>('chat', ref => ref.orderBy("dateCreated"))
+     this.data = data;
      this.resetModel();
-     console.log('message-box', this.user);
   }
 
   ngOnInit() {
@@ -55,6 +56,10 @@ export class MessageBoxComponent implements OnInit {
   }
   
   calcTop() {
+    if (this.hits.length > 8) {
+      return '-450px';
+    }
+    return ((51 * this.hits.length * -1) - 18).toString() + "px";
     let el = <Element>this.el.parentNode;
     let v = el.getBoundingClientRect();
     return (v.top + 140 + (this.el.clientHeight)).toString() + "px";
@@ -64,10 +69,9 @@ export class MessageBoxComponent implements OnInit {
     // if type "@", trigger the autocomplete menu
     if (this.model.text && this.model.text.match(/^@/)) {
       this.data.queryUsers(this.model.text.substring(1))
-        .subscribe((data: IUser[]) => {
-          console.log('response',data);
-          this.hits = data as IUser[];
-          console.log(this.hits);
+        .subscribe((data: any[]) => {
+          this.hits = data.hits;
+          console.log('got hits', this.hits);
         });
     } else {
       this.hits = [];
