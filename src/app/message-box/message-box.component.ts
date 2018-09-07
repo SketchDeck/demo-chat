@@ -109,10 +109,11 @@ export class MessageBoxComponent implements OnInit {
       }
     }
     
-    this.hits.forEach((user) => { delete user.selected });
-    this.hits[this.selection].selected = true;
+    this.hits.forEach((user, i) => 
+      user.selected = i === this.selection;
+    );
     if (setHandleText) {
-      this.model.text = '@' + this.hits[this.selection].handle + ' ';
+      this.applySelection();
     }
     if (clearResults) {
       this.hits = [];
@@ -133,5 +134,28 @@ export class MessageBoxComponent implements OnInit {
     } else {
       this.hits = [];
     }
+  }
+  
+  // on click, choose the user and close dialog
+  handleClick(index) {
+    this.selection = index;
+    this.hits.forEach((user, i) => 
+      user.selected = i === this.selection;
+    );
+    this.applySelection();
+    this.hits = [];
+  }
+  
+  // on hover, choose the user but leave dialog open
+  handleHover(index) {
+    this.selection = index;
+    this.hits.forEach((user, i) => 
+      user.selected = i === this.selection;
+    );
+    this.applySelection();
+  }
+  
+  applySelection() {
+    this.model.text = '@' + this.hits[this.selection].handle + ' ';
   }
 }
