@@ -21,11 +21,10 @@
 	<div class="chat-control">
 		<div class="form-group">
 			<div class="input-group">
-					<div class="input-group-prepend">
-						<img [src]="userObject?.picture.thumbnail" class="author-thumbnail"/>
-					</div>
-				<!--<ng2-completer inputClass="form-control" name="message" [(ngModel)]="model.text" [datasource]="dataService" [minSearchLength]="0"></ng2-completer>-->
-				<input id="message" name="message" type="text" [(ngModel)]="model.text" (ngModelChange)="handleSearch($event)" class="form-control"/>
+				<div class="input-group-prepend">
+					<img [src]="userObject?.picture.thumbnail" class="author-thumbnail"/>
+				</div>
+				<message-box [user]="userObject"></message-box>
 				<div class="input-group-append">
 					<button type="submit" class="btn btn-primary btn-success">Send</button>
 				</div>
@@ -33,14 +32,4 @@
 		</div>
 	</div>
 	
-	<div *ngIf="hits.length" class="handleResults" [ngStyle]="{'left': calcLeft(), 'top': calcTop()}">
-		<div *ngFor="let hit of hits" class="user-hit" >
-			<img [src]="hit.picture.thumbnail" class="chat-thumbnail-sm"/>
-			<span class="handle">{{ hit.handle }}</span>
-			<span class="name">
-				{{ hit.name.first }}	
-				{{ hit.name.last }}
-			</span>
-		</div>
-	</div>
 </form>

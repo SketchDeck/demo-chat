@@ -1,0 +1,18 @@
+<input id="message" 
+    name="message" 
+    type="text" 
+    [(ngModel)]="model.text" 
+    (ngModelChange)="handleSearch($event)" 
+    class="form-control"
+/>
+
+<div *ngIf="hits.length" class="handleResults" [ngStyle]="{'left': calcLeft(), 'top': calcTop()}">
+	<div *ngFor="let hit of hits" class="user-hit" >
+		<img [src]="hit.picture.thumbnail" class="chat-thumbnail-sm"/>
+		<span class="handle">{{ hit.handle }}</span>
+		<span class="name">
+			{{ hit.name.first }}	
+			{{ hit.name.last }}
+		</span>
+	</div>
+</div>

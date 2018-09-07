@@ -31,9 +31,8 @@
     "core-js": "^2.4.1",
     "firebase": "^5.4.2-0",
     "lodash": "^4.17.10",
-    "ng2-completer": "^2.0.8",
-    "rxjs": "^6.3.1",
-    "rxjs-compat": "^6.3.1",
+    "rxjs": "^6.3.2",
+    "rxjs-compat": "^6.3.2",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {

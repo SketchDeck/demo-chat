@@ -8,13 +8,13 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { Ng2CompleterModule } from "ng2-completer";
 
 
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { ChatComponent } from './chat/chat.component';
 import { DataService } from './data.service';
+import { MessageBoxComponent } from './message-box/message-box.component';
 
 
 @NgModule({
@@ -25,11 +25,10 @@ import { DataService } from './data.service';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
-    AngularFireStorageModule, // imports firebase/storage only needed for storage features
-    Ng2CompleterModule
+    AngularFireStorageModule // imports firebase/storage only needed for storage features
   ],
   providers: [DataService],
-  declarations: [ AppComponent, ChatComponent ],
+  declarations: [ AppComponent, ChatComponent, MessageBoxComponent ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {}
