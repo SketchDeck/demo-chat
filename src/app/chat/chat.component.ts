@@ -1,17 +1,18 @@
 import { Component, OnInit, AfterViewChecked, Inject, ViewChild, ElementRef } from '@angular/core';
 import { TitleCasePipe } from '@angular/common';
+import {RequestOptions, Request, RequestMethod} from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/first';
+import { Observable } from 'rxjs';
+import { map, filter, catchError, mergeMap } from 'rxjs/operators'
+import { first } from 'rxjs/operators';
 
 import { Subscription } from 'rxjs/Subscription';
 import * as firebase from 'firebase';
 
 import { IChat } from '../../model/chat';
 import { DataService } from '../data.service';
-
-// class Chat implements IChat {}
 
 @Component({
   selector: 'app-chat',
@@ -22,65 +23,45 @@ export class ChatComponent implements OnInit, AfterViewChecked
 {
   chatCollection: AngularFirestoreCollection<IChat>;
   chat$: Observable<IChat[]>;
-  model: IChat;
-
+  
   user$: Observable<Object>;
   userObject: Object;
 
   @ViewChild('chatStream') private container: ElementRef;
 
-  resetModel(){
-  	this.model = {} as IChat;
-  }
-
   constructor(
       db: AngularFirestore, 
-      data: DataService) 
+      data: DataService,
+      private http: HttpClient,
+      el: ElementRef
+  ) 
   {
     this.chatCollection = db.collection<IChat>('chat', ref => ref.orderBy("dateCreated"))
     this.chat$ = this.chatCollection.valueChanges();
     this.user$ = data.getUser();
 
-    this.chat$.subscribe(() => {this.scrollToBottom()})
-
-    this.resetModel();
+    this.chat$.subscribe(() => {this.scrollToBottom()});
   }
-
   scrollToBottom(): void {
       try {
         this.container.nativeElement.scrollTop = this.container.nativeElement.scrollHeight;
       } catch(err) { 
         console.error(err);
         console.log(this.container);
-      }                 
+      }
     }
 
   ngOnInit() {
-    this.user$.first().subscribe( (u) => this.userObject = u );
+    this.user$.pipe(first()).subscribe( (u) => this.userObject = u );
     this.scrollToBottom();
   }
 
   ngAfterViewChecked() {        
     this.scrollToBottom();        
-  } 
-
-  onSubmit() {
-
-    if (this.model.text != "" && this.model.text != undefined) {
-    	this.model.dateCreated = firebase.firestore.FieldValue.serverTimestamp()
-      this.model.from = this.userObject;
-      this.chatCollection.add(this.model);
-      this.resetModel();
-      this.scrollToBottom();
-    }
-   
   }
 
   public tracker(index, item):any {
     return item.$id;
   }
-
-  
-
 
 }

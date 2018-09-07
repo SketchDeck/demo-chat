@@ -1,0 +1,27 @@
+<form (ngSubmit)="onSubmit()" #chat="ngForm">
+    <input id="message" 
+        name="message" 
+        type="text" 
+        [(ngModel)]="model.text" 
+        (keydown)="handleKey($event)"
+        (ngModelChange)="handleSearch($event)" 
+        class="form-control"
+        autocomplete="off"
+    />
+    
+    <div *ngIf="hits.length" class="handleResults" [ngStyle]="{'top': calcTop()}">
+    	<div *ngFor="let hit of hits; index as i" 
+    	    class="user-hit" 
+    	    [ngClass]="{'selected': hit.selected}"
+    	    (click)="handleClick(i)"
+    	    (mouseenter)="handleHover(i)"
+	    >
+    		<img [src]="hit.picture.thumbnail" class="chat-thumbnail-sm"/>
+    		<span class="handle">{{ hit.handle }}</span>
+    		<span class="name">
+    			{{ hit.name.first }}	
+    			{{ hit.name.last }}
+    		</span>
+    	</div>
+    </div>
+</form>
