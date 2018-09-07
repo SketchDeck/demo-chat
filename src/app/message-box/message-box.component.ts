@@ -109,9 +109,7 @@ export class MessageBoxComponent implements OnInit {
       }
     }
     
-    this.hits.forEach((user, i) => 
-      user.selected = i === this.selection;
-    );
+    this.updateSelection();
     if (setHandleText) {
       this.applySelection();
     }
@@ -139,9 +137,7 @@ export class MessageBoxComponent implements OnInit {
   // on click, choose the user and close dialog
   handleClick(index) {
     this.selection = index;
-    this.hits.forEach((user, i) => 
-      user.selected = i === this.selection;
-    );
+    this.updateSelection();
     this.applySelection();
     this.hits = [];
   }
@@ -149,13 +145,17 @@ export class MessageBoxComponent implements OnInit {
   // on hover, choose the user but leave dialog open
   handleHover(index) {
     this.selection = index;
-    this.hits.forEach((user, i) => 
-      user.selected = i === this.selection;
-    );
+    this.updateSelection();
     this.applySelection();
   }
   
   applySelection() {
     this.model.text = '@' + this.hits[this.selection].handle + ' ';
+  }
+  
+  updateSelection() {
+    this.hits.forEach((user, i) => 
+      user.selected = i === this.selection
+    );
   }
 }
