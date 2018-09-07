@@ -30,3 +30,8 @@
 .user-hit {
 	padding: 5px;
 }
+
+.user-hit.selected {
+    color: #eee;
+    background-color: #3487c3;
+}

@@ -21,7 +21,7 @@ export class DataService {
 			);
 	}
 	
-	queryUsers(term): Observable<IUser[]> {
+	queryUsers(term): Observable<any[]> {
 		let appId = 'JYBBND0XOY';
 		let apiKey = '9631efee5b7518aecd0fd96df17a1427';
 		let index = 'users';
@@ -32,7 +32,13 @@ export class DataService {
 			  "X-Algolia-Application-Id": appId
 			}
 		};
-		return this.http.get<IUser[]>(searchUrl, options);
+		return this.http.get<Array<IUser>>(searchUrl, options)
+			.pipe(
+				map((data: any[]) => {
+					console.log('queryUsers results', data);
+					return data['hits'];
+				})
+			);
 	}
 
 }

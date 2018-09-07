@@ -1,35 +1,31 @@
+<div class="chat-stream" #chatStream>
+	<div *ngFor="let c of chat$ | async; trackBy tracker">
+		<div class="chat-item d-flex align-items-center">
 
-<form (ngSubmit)="onSubmit()" #chat="ngForm">
-	<div class="chat-stream" #chatStream>
-		<div *ngFor="let c of chat$ | async; trackBy tracker">
-			<div class="chat-item d-flex align-items-center">
-
-				<div class="chat-author-group d-flex flex-column justify-content-center align-items-center">
-					<img [src]="c.from.picture.medium" class="chat-thumbnail"/>
-				</div>
-
-				<div class="chat-message-group">
-					<div class="chat-message">{{c.text}}</div>
-					<div class="chat-name">{{c.from.name.first | titlecase}}</div>
-				</div>
-
+			<div class="chat-author-group d-flex flex-column justify-content-center align-items-center">
+				<img [src]="c.from.picture.medium" class="chat-thumbnail"/>
 			</div>
-		</div>
-		<a id="endOfChat"></a>
-	</div>
 
-	<div class="chat-control">
-		<div class="form-group">
-			<div class="input-group">
-				<div class="input-group-prepend">
-					<img [src]="userObject?.picture.thumbnail" class="author-thumbnail"/>
-				</div>
-				<message-box [user]="userObject"></message-box>
-				<div class="input-group-append">
-					<button type="submit" class="btn btn-primary btn-success">Send</button>
-				</div>
+			<div class="chat-message-group">
+				<div class="chat-message">{{c.text}}</div>
+				<div class="chat-name">{{c.from.name.first | titlecase}}</div>
+			</div>
+
+		</div>
+	</div>
+	<a id="endOfChat"></a>
+</div>
+
+<div class="chat-control">
+	<div class="form-group">
+		<div class="input-group">
+			<div class="input-group-prepend">
+				<img [src]="userObject?.picture.thumbnail" class="author-thumbnail"/>
+			</div>
+			<message-box [user]="userObject"></message-box>
+			<div class="input-group-append">
+				<button type="submit" class="btn btn-primary btn-success">Send</button>
 			</div>
 		</div>
 	</div>
-	
-</form>
+</div>
