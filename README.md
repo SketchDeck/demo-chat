@@ -18,7 +18,8 @@ The goal is to add <kbd>@mentions</kbd> to our chat. This should look, feel and 
 
 ### Technical steps
 
-1. Get the project running by cloning this repository, installing Angular CLI, then running `npm install` and `ng serve`
+1. Get the project running by cloning this repository
+2. Using Node 10, install Angular CLI 10 (`npm install -g @angular/cli`) then run `npm install` and `ng serve`
 2. Take `src/assets/users.json` (our mock user data) and write a function to generate a chat handle for each user. FirstnameLastname or their email username are good initial candidates. Note that chat handles do not need to be unique (turns out this is more useful in a real-world application).
 3. Create an <a href="https://algolia.com">Algolia</a> account and upload the user data there, with the chat handles.
 4. Get type-ahead working in the app, using Algolia as the search engine
