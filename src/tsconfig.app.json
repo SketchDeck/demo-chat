@@ -1,4 +1,5 @@
 {
+  "experimentalDecorators": true,
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",

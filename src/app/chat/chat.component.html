@@ -1,7 +1,7 @@
 
 <form (ngSubmit)="onSubmit()" #chat="ngForm">
 	<div class="chat-stream" #chatStream>
-		<div *ngFor="let c of chat$ | async; trackBy tracker">
+		<div *ngFor="let c of chats trackBy tracker">
 			<div class="chat-item d-flex align-items-center">
 
 				<div class="chat-author-group d-flex flex-column justify-content-center align-items-center">
@@ -9,8 +9,8 @@
 				</div>
 
 				<div class="chat-message-group">
-					<div class="chat-message">{{c.text}}</div>
-					<div class="chat-name">{{c.from.name.first | titlecase}}</div>
+					<div class="chat-message">{{ c.text }}</div>
+					<div class="chat-name">{{ c.from.name.first | titlecase }}</div>
 				</div>
 
 			</div>
@@ -22,7 +22,7 @@
 		<div class="form-group">
 			<div class="input-group">
 					<div class="input-group-prepend">
-						<img [src]="userObject?.picture.thumbnail" class="author-thumbnail"/>
+						<img [src]="user?.picture?.thumbnail" class="author-thumbnail"/>
 					</div>
 				<input id="message" name="message" type="text" [(ngModel)]="model.text" class="form-control"/>
 				<div class="input-group-append">
