@@ -24,7 +24,7 @@ The goal is to add <kbd>@mentions</kbd> to our chat. This should look, feel and 
 3. Create an <a href="https://algolia.com">Algolia</a> account and upload the user data there, with the chat handles.
 4. Get type-ahead working in the app, using Algolia as the search engine
 5. Build the key handlers to implement the enter auto-complete, arrow up/down selection, and handle user backspace presses as well (e.g. if they delete the @, stop showing the menu)
-6. Decide how to post the messages to Firestore
+6. Decide how to post the messages to Firestore (we've already setup the DB - config is in `environments.ts`; use the `firebase` SDK).
 7. Show messages with mentions in them with the mention highlighted
 
 ### Specification
@@ -42,7 +42,7 @@ Your solution should do the following:
 
 Here are a few other nice to haves:
 
-- Give each user their own chat bubble colour
+- Give each user their own chat bubble color
 - Add an emoji palette
 - If a user sends just one emoji, show it big with no background
 - Email the mentioned user to let them know who said what to them. You should direct all these emails to your own address.
@@ -55,31 +55,18 @@ We like to work in a collaborative, communicative manner. We'll invite you to ou
 - Ask us questions to clarify things you're uncertain about
 - If you get stuck on something, ask us for help
 - Collaborate with us if there's a skill you lack
-- Communicate your timeline to us and give realistic estimates of when you'll hit key milestones (e.g. proof of concept, first draft, final version)
-- Preview your work (UX / code / demos) early and often so we can provide helpful guidance and know how it's going
-- Give a little video-demo to the tech team at the end showing the feature in action and your code
+
+### Completing the project
+- Push your solution to a branch in this repo and let the team know in Slack
+- <a href="https://calendly.com/joe-teibel/30min-1">Schedule a 30 minute call</a> to do a review with the team
 
 
-### Development server
+### Angular basics in case you need a quick refresher
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-### Code scaffolding
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-### Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-### Running unit tests
-
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-### Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-### Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
