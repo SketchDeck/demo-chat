@@ -57,7 +57,7 @@ We like to work in a collaborative, communicative manner. We'll invite you to ou
 - Collaborate with us if there's a skill you lack
 
 ### Completing the project
-- Push your solution to a branch in this repo and let the team know in Slack
+- Push your solution to a fork of this repo (make sure it is publicly available) and let the team know in Slack
 - <a href="https://calendly.com/joe-teibel/30min-1">Schedule a 30 minute call</a> to do a review with the team
 
 
