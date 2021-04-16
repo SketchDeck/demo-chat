@@ -47,13 +47,13 @@ export class ChatComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.fbChatSub = this.firebase.firestore
       .collection("chat")
-      .orderBy("dateCreatedUnix")
+      .orderBy("dateCreatedUnix","desc")
       .limit(20)
       .onSnapshot(
         (snap) => {
           this.chats = [];
           snap.forEach((doc) => {
-            this.chats.push(doc.data());
+            this.chats.unshift(doc.data());
           });
           // timeout to give chats time to load
           setTimeout(() => {
